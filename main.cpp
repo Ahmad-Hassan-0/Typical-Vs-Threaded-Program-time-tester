@@ -4,6 +4,9 @@
 using namespace std;
 
 long long int counter = 0;
+int iterations = 3;
+pthread_t threads[10000];
+    	
 
 int ackermannSimple(int m, int n) {
 //	counter++;
@@ -22,7 +25,7 @@ void* fun_ction(void*){
 	int m = 4, n = 1, ans = 0;
 	ans = ackermannSimple(m, n);
 	cout << "\nAckermann(" << m << ", " << n << ")" << " = " << ans << endl;
-	cout << "counter = " << counter; 
+//	cout << "counter = " << counter; 
 	return NULL;
 }
 
@@ -31,28 +34,25 @@ int main(int argc, char *argv[]) {
     int value = atoi(argv[1]);
     
     if(value == 1){
-    	cout << "\nTypical Program Execution Speed";
-    	fun_ction(NULL);
-    	fun_ction(NULL); 
-    	fun_ction(NULL); 
+    
+    	cout << "\nTypical Program Execution Speed\n";
+    	
+    	for(int i = 0 ; i < iterations ; i++)
+    		fun_ction(NULL);
     }
     else if(value == 2){
-    	cout << "\nThreaded Program Execution Speed";
-    	pthread_t thread1;
-    	pthread_t thread2;
-    	pthread_t thread3;
-  
-   	pthread_create(&thread1, NULL, fun_ction, NULL);
-   	pthread_create(&thread2, NULL, fun_ction, NULL);
-	pthread_create(&thread3, NULL, fun_ction, NULL);
+    	
+    	cout << "\nThreaded Program Execution Speed\n";
+    	  	
+	for (int i = 0; i < iterations; i++)
+		pthread_create(&threads[i], NULL, fun_ction, NULL);
 	
-  	pthread_join(thread1, NULL);
-   	pthread_join(thread2, NULL); 
-   	pthread_join(thread3, NULL); 
+	for (int i = 0; i < iterations; i++)
+		pthread_join(threads[i], NULL);
     }
     else{
-    	cout << "\nIncorrect Input";
-    }
+    		cout << "\nIncorrect Input";
+    	}
     
     return 0;
 }
