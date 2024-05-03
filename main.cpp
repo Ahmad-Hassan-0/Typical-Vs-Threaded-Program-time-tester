@@ -3,7 +3,17 @@
 
 using namespace std;
 
+long long int i= 0;
+long long int counter = 0;
+
 int ackermannSimple(int m, int n) {
+	counter++;
+	if(counter == 100000){
+	i++;
+	counter = 0;
+	
+	}
+	
     if (m == 0) {
         return n + 1;
     } else if (m > 0 && n == 0) {
@@ -15,13 +25,14 @@ int ackermannSimple(int m, int n) {
 
 
 void* fun_ction(void*){
-	int m = 3, n = 11;
-	ackermannSimple(m, n);
+	int m = 4, n = 1, ans = 0;
+	ans = ackermannSimple(m, n);
+	cout << "\nAckermann(" << m << ", " << n << ")" << " = " << ans << endl << "\ni = " << i; 
 	return NULL;
 }
 
 int main(int argc, char *argv[]) {
-
+    
     int value = atoi(argv[1]);
     
     if(value == 1){
