@@ -6,7 +6,7 @@ using namespace std;
 long long int counter = 0;
 
 int ackermannSimple(int m, int n) {
-//	counter++; enable this to see how many times recursion was executed
+//	counter++;
 	
     if (m == 0) {
         return n + 1;
@@ -21,7 +21,8 @@ int ackermannSimple(int m, int n) {
 void* fun_ction(void*){
 	int m = 4, n = 1, ans = 0;
 	ans = ackermannSimple(m, n);
-	cout << "\nAckermann(" << m << ", " << n << ")" << " = " << ans << endl << "\ncounter = " << counter; 
+	cout << "\nAckermann(" << m << ", " << n << ")" << " = " << ans << endl;
+	cout << "counter = " << counter; 
 	return NULL;
 }
 
